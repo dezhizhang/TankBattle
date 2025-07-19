@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
     // 精灵对象
     private SpriteRenderer _sprite;
 
+    // 子弹发送的时间时隔
+    private float _timeValue;
+
     // 精灵集合
     public Sprite[] sprites;
 
@@ -22,11 +25,22 @@ public class Player : MonoBehaviour
         _sprite = GetComponent<SpriteRenderer>();
     }
 
+    private void Update()
+    {
+        if (_timeValue >= 0.4)
+        {
+            Attack();
+        }
+        else
+        {
+            _timeValue += Time.deltaTime;
+        }
+    }
+
     private void FixedUpdate()
     {
         // 玩家移动
         PlayMove();
-        Attack();
     }
 
     /// <summary>
@@ -36,7 +50,9 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            Instantiate(bulletPrefab, transform.position, Quaternion.Euler(transform.eulerAngles + _bulletEulerAngles));
+            Instantiate(bulletPrefab, transform.position,
+                Quaternion.Euler(transform.eulerAngles + _bulletEulerAngles));
+            _timeValue = 0;
         }
     }
 
@@ -76,7 +92,7 @@ public class Player : MonoBehaviour
         else if (vertical > 0)
         {
             _sprite.sprite = sprites[0];
-            _bulletEulerAngles = new Vector3(0, 0,0);
+            _bulletEulerAngles = new Vector3(0, 0, 0);
         }
 
         // 玩家垂直移动
