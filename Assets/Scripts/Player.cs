@@ -12,7 +12,10 @@ public class Player : MonoBehaviour
     public Sprite[] sprites;
 
     // 子弹
-    public GameObject bullectPrefab;
+    public GameObject bulletPrefab;
+
+    // 子弹旋转角度
+    private Vector3 _bulletEulerAngles;
 
     private void Awake()
     {
@@ -33,7 +36,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            Instantiate(bullectPrefab, transform.position, transform.rotation);
+            Instantiate(bulletPrefab, transform.position, Quaternion.Euler(transform.eulerAngles + _bulletEulerAngles));
         }
     }
 
