@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
         _sprite = GetComponent<SpriteRenderer>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         // 水平轴的输入
         float horizontal = Input.GetAxis("Horizontal");
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         }
 
         // 玩家水平方向
-        transform.Translate(Vector3.right * moveSpeed * Time.deltaTime * horizontal, Space.World);
+        transform.Translate(Vector3.right * moveSpeed * Time.fixedDeltaTime * horizontal, Space.World);
 
         // 垂直轴的输入
         float vertical = Input.GetAxis("Vertical");
@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
         }
 
         // 玩家垂直移动
-        transform.Translate(Vector3.up * moveSpeed * Time.deltaTime * vertical, Space.World);
+        transform.Translate(Vector3.up * moveSpeed * Time.fixedDeltaTime * vertical, Space.World);
     }
+    
 }
