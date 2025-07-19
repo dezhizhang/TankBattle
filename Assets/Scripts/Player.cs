@@ -53,10 +53,12 @@ public class Player : MonoBehaviour
         {
             //向左移动
             _sprite.sprite = sprites[3];
+            _bulletEulerAngles = new Vector3(0, 0, 90);
         }
         else if (horizontal > 0)
         {
             _sprite.sprite = sprites[1];
+            _bulletEulerAngles = new Vector3(0, 0, -90);
         }
 
         if (horizontal != 0)
@@ -69,10 +71,12 @@ public class Player : MonoBehaviour
         {
             // 向下移动
             _sprite.sprite = sprites[2];
+            _bulletEulerAngles = new Vector3(0, 0, -180);
         }
         else if (vertical > 0)
         {
             _sprite.sprite = sprites[0];
+            _bulletEulerAngles = new Vector3(0, 0,0);
         }
 
         // 玩家垂直移动
