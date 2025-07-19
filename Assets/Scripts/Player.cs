@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     // 精灵集合
     public Sprite[] sprites;
 
+    // 子弹
+    public GameObject bullectPrefab;
+
     private void Awake()
     {
         _sprite = GetComponent<SpriteRenderer>();
@@ -20,6 +23,18 @@ public class Player : MonoBehaviour
     {
         // 玩家移动
         PlayMove();
+        Attack();
+    }
+
+    /// <summary>
+    /// 坦克攻击方法
+    /// </summary>
+    private void Attack()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Instantiate(bullectPrefab, transform.position, transform.rotation);
+        }
     }
 
     /// <summary>
