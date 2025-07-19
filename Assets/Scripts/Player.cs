@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     // 精灵对象
     private SpriteRenderer _sprite;
 
+    // 精灵集合
     public Sprite[] sprites;
 
     private void Awake()
@@ -17,26 +18,35 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // 玩家移动
+        PlayMove();
+    }
+
+    /// <summary>
+    /// 玩家移动
+    /// </summary>
+    private void PlayMove()
+    {
         // 水平轴的输入
         float horizontal = Input.GetAxis("Horizontal");
-
+        float vertical = Input.GetAxis("Vertical");
 
         if (horizontal < 0)
         {
-            // 向左移动
+            //向左移动
             _sprite.sprite = sprites[3];
         }
         else if (horizontal > 0)
         {
-            // 向右移动
             _sprite.sprite = sprites[1];
         }
 
-        // 玩家水平方向
-        transform.Translate(Vector3.right * moveSpeed * Time.fixedDeltaTime * horizontal, Space.World);
+        if (horizontal != 0)
+        {
+            transform.Translate(Vector3.right * moveSpeed * Time.fixedDeltaTime * horizontal, Space.World);
+            return;
+        }
 
-        // 垂直轴的输入
-        float vertical = Input.GetAxis("Vertical");
         if (vertical < 0)
         {
             // 向下移动
@@ -44,12 +54,10 @@ public class Player : MonoBehaviour
         }
         else if (vertical > 0)
         {
-            // 向上移动
             _sprite.sprite = sprites[0];
         }
 
         // 玩家垂直移动
         transform.Translate(Vector3.up * moveSpeed * Time.fixedDeltaTime * vertical, Space.World);
     }
-    
 }
