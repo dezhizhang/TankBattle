@@ -24,26 +24,52 @@ public class MapCreation : MonoBehaviour
             CreateGameObjectItem(maps[1], new Vector3(i, -7, 0), Quaternion.identity);
         }
 
-        // 最外围的
+        // 空气外锁芯
         for (int i = -15; i < 16; i++)
         {
             CreateGameObjectItem(maps[6], new Vector3(i, 8, 0), Quaternion.identity);
         }
 
-        for (int i =  -15; i < 16; i++)
+        // 空气外锁芯
+        for (int i = -15; i < 16; i++)
         {
             CreateGameObjectItem(maps[6], new Vector3(i, -8, 0), Quaternion.identity);
         }
 
-        // 最左边
+        // 空气外锁芯
         for (int i = -8; i < 9; i++)
         {
             CreateGameObjectItem(maps[6], new Vector3(-15, i, 0), Quaternion.identity);
         }
 
+        // 空气外锁芯
         for (int i = -8; i < 9; i++)
         {
             CreateGameObjectItem(maps[6], new Vector3(15, i, 0), Quaternion.identity);
+        }
+
+        // 实例化地图
+        for (int i = 0; i < 100; i++)
+        {
+            CreateGameObjectItem(maps[1], CreateRandomPosition(), Quaternion.identity);
+        }
+
+        for (int i = 0; i < 20; i++)
+        {
+            CreateGameObjectItem(maps[2], CreateRandomPosition(), Quaternion.identity);
+        }
+
+        for (int i = 0; i < 20; i++)
+        {
+            CreateGameObjectItem(maps[3], CreateRandomPosition(), Quaternion.identity);
+        }
+        for (int i = 0; i < 20; i++)
+        {
+            CreateGameObjectItem(maps[4], CreateRandomPosition(), Quaternion.identity);
+        }
+        for (int i = 0; i < 20; i++)
+        {
+            CreateGameObjectItem(maps[5], CreateRandomPosition(), Quaternion.identity);
         }
     }
 
