@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 /// <summary>
 /// 地图生成工具
@@ -8,6 +9,8 @@ public class MapCreation : MonoBehaviour
     // 初始化所需物体的数组
     // 0. 老家，3障碍，3. 出生效果,4. 河流，5. 草
     public GameObject[] maps;
+
+    private List<Vector3> _mapPosList = new List<Vector3>();
 
     private void Awake()
     {
@@ -33,5 +36,41 @@ public class MapCreation : MonoBehaviour
         GameObject go = Instantiate(obj, pos, rot);
         // 设置父级游戏物体
         go.transform.SetParent(gameObject.transform);
+    }
+
+    /// <summary>
+    /// 生成随机数位置
+    /// </summary>
+    /// <returns></returns>
+    private Vector3 CreateRandomPosition()
+    {
+        while (true)
+        {
+            // 生成随机位置
+            Vector3 pos = new Vector3(Random.Range(-9, 10), Random.Range(-7, 8), 0);
+            if (!HashListPosition(pos))
+            {
+                return pos;
+            }
+        }
+    }
+    
+    /// <summary>
+    /// 判断点是否在集合中
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <returns></returns>
+    private bool HashListPosition(Vector3 pos)
+    {
+        int length = _mapPosList.Count;
+        for (int i = 0; i < length; i++)
+        {
+            if (pos == _mapPosList[i])
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
