@@ -6,7 +6,11 @@ using UnityEngine;
 /// </summary>
 public class Bullet : MonoBehaviour
 {
+    // 子弹的移动速度
     public float moveSpeed = 10;
+
+    // 玩家的子弹
+    public bool isPlayerBullet;
 
     private void Update()
     {
@@ -22,16 +26,23 @@ public class Bullet : MonoBehaviour
         switch (collision.tag)
         {
             case "Tank":
-                // 调用玩家死死亡
-                collision.SendMessageUpwards("TankDie");
+                if (!isPlayerBullet)
+                {
+                    collision.SendMessageUpwards("TankDie");
+                }
+
                 break;
             case "Heart":
+                collision.SendMessageUpwards("Die");
                 break;
             case "Enemy":
                 break;
             case "Wall":
+                Destroy(collision.gameObject);
+                Destroy(gameObject);
                 break;
             case "Barrier":
+                Destroy(gameObject);
                 break;
         }
     }
