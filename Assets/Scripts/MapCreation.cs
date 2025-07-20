@@ -23,6 +23,28 @@ public class MapCreation : MonoBehaviour
         {
             CreateGameObjectItem(maps[1], new Vector3(i, -7, 0), Quaternion.identity);
         }
+
+        // 最外围的
+        for (int i = -15; i < 16; i++)
+        {
+            CreateGameObjectItem(maps[6], new Vector3(i, 8, 0), Quaternion.identity);
+        }
+
+        for (int i =  -15; i < 16; i++)
+        {
+            CreateGameObjectItem(maps[6], new Vector3(i, -8, 0), Quaternion.identity);
+        }
+
+        // 最左边
+        for (int i = -8; i < 9; i++)
+        {
+            CreateGameObjectItem(maps[6], new Vector3(-15, i, 0), Quaternion.identity);
+        }
+
+        for (int i = -8; i < 9; i++)
+        {
+            CreateGameObjectItem(maps[6], new Vector3(15, i, 0), Quaternion.identity);
+        }
     }
 
     /// <summary>
@@ -54,7 +76,7 @@ public class MapCreation : MonoBehaviour
             }
         }
     }
-    
+
     /// <summary>
     /// 判断点是否在集合中
     /// </summary>
