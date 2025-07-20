@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -10,5 +11,26 @@ public class Bullet : MonoBehaviour
     private void Update()
     {
         transform.Translate(transform.up * moveSpeed * Time.deltaTime, Space.World);
+    }
+
+    /// <summary>
+    /// 碰撞器
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (collision.tag)
+        {
+            case "Tank":
+                break;
+            case "Heart":
+                break;
+            case "Enemy":
+                break;
+            case "Wall":
+                break;
+            case "Barrier":
+                break;
+        }
     }
 }

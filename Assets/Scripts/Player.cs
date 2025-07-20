@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
     // 子弹
     public GameObject bulletPrefab;
 
+    // 爆炸特效
+    public GameObject explorerPrefab;
+
     // 子弹旋转角度
     private Vector3 _bulletEulerAngles;
 
@@ -51,9 +54,22 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             Instantiate(bulletPrefab, transform.position,
-                Quaternion.Euler(transform.eulerAngles + _bulletEulerAngles));
+                Quaternion.Euler(transform.eulerAngles + _bulletEulerAngles)
+            );
             _timeValue = 0;
         }
+    }
+
+
+    /// <summary>
+    /// 坦克的死亡
+    /// </summary>
+    private void TankDie()
+    {
+        // 爆炸特效
+        Instantiate(explorerPrefab, transform.position, transform.rotation);
+        // 死亡
+        Destroy(gameObject);
     }
 
     /// <summary>

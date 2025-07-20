@@ -105,6 +105,7 @@ MonoBehaviour:
   - {fileID: 21300016, guid: 55b011970cb6c1441be9af335e238fb6, type: 3}
   - {fileID: 21300032, guid: 55b011970cb6c1441be9af335e238fb6, type: 3}
   - {fileID: 21300048, guid: 55b011970cb6c1441be9af335e238fb6, type: 3}
+  bulletPrefab: {fileID: 5909210757501004628, guid: ba1b1d7d5f4e042b3b24d8de4ac98896, type: 3}
 --- !u!50 &-970776126495432975
 Rigidbody2D:
   serializedVersion: 4
@@ -120,7 +121,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -131,7 +132,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &4184259032856878750
 BoxCollider2D:
   m_ObjectHideFlags: 0
