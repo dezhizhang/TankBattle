@@ -11,6 +11,12 @@ public class Player : MonoBehaviour
     // 子弹发送的时间时隔
     private float _timeValue;
 
+    // 玩家处理保存状态
+    private bool _isDefended = true;
+
+    // 玩家处理保户的时间
+    private float _defendTimeVal = 3;
+
     // 精灵集合
     public Sprite[] sprites;
 
@@ -19,6 +25,9 @@ public class Player : MonoBehaviour
 
     // 爆炸特效
     public GameObject explorerPrefab;
+
+    // 受保护的的特效
+    public GameObject defendEffectPrefab;
 
     // 子弹旋转角度
     private Vector3 _bulletEulerAngles;
@@ -30,6 +39,19 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        // 保护是否处理无敌状态
+        if (_isDefended)
+        {
+            _defendTimeVal -= Time.deltaTime;
+            defendEffectPrefab.SetActive(true);
+            if (_defendTimeVal <= 0)
+            {
+                _isDefended = false;
+                defendEffectPrefab.SetActive(false);
+            }
+        }
+
+        // 攻击的CD
         if (_timeValue >= 0.4)
         {
             Attack();
@@ -66,10 +88,13 @@ public class Player : MonoBehaviour
     /// </summary>
     private void TankDie()
     {
-        // 爆炸特效
-        Instantiate(explorerPrefab, transform.position, transform.rotation);
-        // 死亡
-        Destroy(gameObject);
+        if (!_isDefended)
+        {
+            // 爆炸特效
+            Instantiate(explorerPrefab, transform.position, transform.rotation);
+            // 死亡
+            Destroy(gameObject);
+        }
     }
 
     /// <summary>

@@ -22,6 +22,8 @@ public class Bullet : MonoBehaviour
         switch (collision.tag)
         {
             case "Tank":
+                // 调用玩家死死亡
+                collision.SendMessageUpwards("TankDie");
                 break;
             case "Heart":
                 break;
